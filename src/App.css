@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.box{
+    height: 200px;
+    background-color: rgb(230, 243, 238);
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: bolder;
+    color:white;
+    align-content: center;
+}
+
+.matrix{
+display:grid;
+text-align: center;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
