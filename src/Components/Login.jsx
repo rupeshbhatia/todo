@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Col } from 'react-bootstrap';
 import { useNavigate,Link } from 'react-router-dom';
 
 function Login() {
@@ -26,7 +27,8 @@ let user=localStorage.getItem("name")
     }
     }
   return (
-   <form onSubmit={formdata} className='bg-light w-50 p-4' style={{margin:"5rem auto"}}>
+    <Col sm={11} lg={5} md={7} style={{margin:"5rem auto"}}>
+   <form onSubmit={formdata} className='bg-light  p-4 ' >
 <h2>Log In</h2>
 <br />
     <input type="email" placeholder='Enter Email' onChange={(e)=>setUsername(e.target.value)} className='form-control'/>
@@ -37,6 +39,7 @@ let user=localStorage.getItem("name")
     
     <input type="submit" value="Log In" className=' btn btn-primary'/>
    </form>
+   </Col>
   )
 }
 
