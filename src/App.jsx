@@ -1,43 +1,47 @@
-import React from 'react'
-import "./App.css"
+import React, { useEffect, useState } from 'react'
+import Login from './Components/Login'
+import SignUp from './Components/SignUp'
+import { Route, Routes } from 'react-router-dom'
+import Todoinput from './Components/Todoinput'
+import './App.css'
 function App() {
-  let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  let newarr = []
-  let handleClick = (val) => {
-    newarr.push(val)
-    // console.log(newarr)
-    let a = document.getElementsByClassName("box")
-    // console.log(a[val])
-    a[val].style.cssText = "background-color:green;pointer-events:none;";
-    if (newarr.length == 9) {
-      setTimeout(() => {
-        newarr.map((item, idx) => {
-          setTimeout(() => {
-            let a = document.getElementsByClassName("box")
-            a[item].style.backgroundColor = "orange"
-          }, 1000 * idx)
+  let[coords,setCoords]=useState({})
 
-        })
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    
 
-      }, 1000)
 
-    }
-
+  } else { 
+console.log("Geolocation is not supported by this browser.")
   }
-  
-  return (
-    <div className="matrix">
-      {
-        arr.map((item, idx) => {
-          return (
-            <div className="box" key={idx} onClick={() => handleClick(idx)} >
-              {item}
-            </div>
-          )
-        })
-      }
-    </div>
+}
 
+function showPosition(position) {
+setCoords( {lat:(position.coords.latitude),lon:(position.coords.longitude)})
+let a={lat:(position.coords.latitude),lon:(position.coords.longitude)}
+localStorage.setItem("data",JSON.stringify(a))
+
+
+}
+
+  useEffect(()=>{
+   
+    getLocation();
+
+   
+  },[])
+  return (
+  <>
+  
+<Routes>
+<Route path='/' element={<SignUp/>}/>
+<Route path='/login' element={<Login/>}/>
+<Route path='/todoinput' element={<Todoinput />}/>
+</Routes>
+  </>
+  
   )
 }
 
